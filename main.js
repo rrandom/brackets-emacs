@@ -82,14 +82,14 @@ define(function (require, exports, module) {
         codemirror.setCursor(point);
     }
 
-    /*
+
     function clearMark() {
-        var editor      = EditorManager.getFocusedEditor();
+        var editor = EditorManager.getFocusedEditor();
         //var codemirror  = editor._codeMirror;
         //codemirror.setExtending(false);
         codemirror.setCursor(codemirror.getCursor("head"));
     }
-    
+
     function _killRingSave(selectedText) {
         if (!selectedText) {
             return;
@@ -100,25 +100,31 @@ define(function (require, exports, module) {
     }
 
     function killRingSave() {
-        var editor  = EditorManager.getFocusedEditor();
+        var editor = EditorManager.getFocusedEditor();
         _killRingSave(editor.getSelectedText());
         clearMark();
     }
 
     function killRegion(killLine) {
-        var editor      = EditorManager.getFocusedEditor(),
-            doc         = editor.document,
+        var editor = EditorManager.getFocusedEditor(),
+            doc = editor.document,
             selection;
         if (killLine) {
             var start = editor.getCursorPos(),
-                end = {line: start.line, ch: start.ch + MAX_LINE_LENGTH},
+                end = {
+                    line: start.line,
+                    ch: start.ch + MAX_LINE_LENGTH
+                },
                 text = doc.getRange(start, end);
             if (!text) {
                 end.line++;
                 end.ch = 0;
                 text = "\n";
             }
-            selection = {start: start, end: end};
+            selection = {
+                start: start,
+                end: end
+            };
             _killRingSave(text);
         } else {
             selection = editor.getSelection();
@@ -132,9 +138,9 @@ define(function (require, exports, module) {
         if (ring.length === 0) {
             return;
         }
-        var editor      = EditorManager.getFocusedEditor(),
-            doc         = editor.document,
-            start       = editor.getCursorPos(),
+        var editor = EditorManager.getFocusedEditor(),
+            doc = editor.document,
+            start = editor.getCursorPos(),
             end;
         if (repeat) {
             start = yank.range.start;
@@ -149,7 +155,7 @@ define(function (require, exports, module) {
         clearMark();
     }
 
-    */
+
     function _getWordPos(num, relativeToPos) {
         var editor = EditorManager.getFocusedEditor(),
             cursorPos = editor.getCursorPos(),
@@ -331,7 +337,7 @@ define(function (require, exports, module) {
                     key: "Ctrl-E",
                     callback: moveCursor.bind(this, MAX_LINE_LENGTH, CHAR, true)
                 },
-                /*
+
                 {
                     id: YANK,
                     name: "Yank",
@@ -346,7 +352,7 @@ define(function (require, exports, module) {
                         }
                     ]
                 },
-                
+
                 {
                     id: KILL_REGION,
                     name: "Kill Region",
@@ -365,7 +371,7 @@ define(function (require, exports, module) {
                     key: "Ctrl-K",
                     callback: killRegion.bind(null, true)
                 },
-                */
+
                 {
                     id: FORWARD_CHAR,
                     name: "Forward Character",
@@ -442,7 +448,7 @@ define(function (require, exports, module) {
                         }
                     ]
                 },
-                /*
+
                 {
                     id: KEYBOARD_QUIT,
                     name: "Keyboard Quit",
@@ -464,7 +470,7 @@ define(function (require, exports, module) {
                         }
                     ]
                 },
-                */
+
                 {
                     id: UNDO,
                     name: "Undo",
@@ -477,6 +483,9 @@ define(function (require, exports, module) {
                     key: "Alt-;",
                     overrideId: Commands.EDIT_LINE_COMMENT
                 },
+
+                // If the search can not work, modify it to Ctrl-D, restart brackets, modify to Ctrl-S again, then the find command can work.
+                // Is it a brackets bug?
                 {
                     id: ISEARCH_FORWARD,
                     name: "ISearch Forward",
@@ -642,7 +651,7 @@ define(function (require, exports, module) {
             commands.forEach(removeBinding);
             commands.forEach(register);
             commands.forEach(addBinding);
-        }, 500);
+        }, 0);
 
     });
 });
