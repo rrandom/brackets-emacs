@@ -85,8 +85,8 @@ define(function (require, exports, module) {
 
     function clearMark() {
         var editor = EditorManager.getFocusedEditor();
-        //var codemirror  = editor._codeMirror;
-        //codemirror.setExtending(false);
+        var codemirror = editor._codeMirror;
+        codemirror.setExtending(false);
         codemirror.setCursor(codemirror.getCursor("head"));
     }
 
