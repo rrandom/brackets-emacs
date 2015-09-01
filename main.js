@@ -483,9 +483,6 @@ define(function (require, exports, module) {
                     key: "Alt-;",
                     overrideId: Commands.EDIT_LINE_COMMENT
                 },
-
-                // If the search can not work, modify it to Ctrl-D, restart brackets, modify to Ctrl-S again, then the find command can work.
-                // Is it a brackets bug?
                 {
                     id: ISEARCH_FORWARD,
                     name: "ISearch Forward",
